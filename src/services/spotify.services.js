@@ -1,7 +1,7 @@
 import service from "./config.services";
 
-const getAllArtists = (body) => {
-  return service.get("/artist-search", body);
+const getAllArtists = (query) => {
+  return service.get(`/artist-search?artist=${query}`);
 };
 const getAlbums = (params) => {
   return service.get(`/album/${params}`);
