@@ -1,23 +1,15 @@
-import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import List from "../components/List";
-import { getAllArtists } from "../services/spotify.services";
-import { fetchData } from "../utils/fetchData";
+import { DATA_TYPE } from "../consts/spotify.consts";
+import { useSoptify } from "../hooks/useSpotify";
 
 function ArtistResults() {
   const params = useParams();
   const { results } = params;
-
-  const [fetched, setfetched] = useState(null);
-  const [isFetching, setisFetching] = useState(true);
-
-  fetchData(getAllArtists, results, setfetched, setisFetching);
+  const { data } = useSoptify({ query: results, type: DATA_TYPE.ARTISTS });
 
   return (
-    <>
-      {isFetching && <p>Loading...</p>}
-      {!isFetching && <List data={fetched.body.artists.items} />}
-    </>
+    <>{!data ? <p>Loading...</p> : <List data={data.body.artists.items} />}</>
   );
 }
 

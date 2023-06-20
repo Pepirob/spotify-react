@@ -1,6 +1,6 @@
 import React from "react";
 
-function SearchForm({ setSearchInput, redirect }) {
+function SearchForm({ setSearchInput }) {
   const handleSearch = (event) => {
     event.preventDefault();
     setSearchInput(event.target.value);
@@ -15,7 +15,6 @@ function SearchForm({ setSearchInput, redirect }) {
           onChange={handleSearch}
           placeholder="What do you want to listen to?"
         />
-        <button onClick={() => redirect()}>Search for an Artist</button>
       </form>
     </>
   );

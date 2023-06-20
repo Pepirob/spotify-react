@@ -1,21 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getAllArtists } from "../services/spotify.services";
 import Item from "./Item";
+import "./List.css";
 
 function List({ data }) {
   return (
-    <>
-      {data.type === "track" && (
-        <header>
-          <h2>Title</h2>
-          <h2>Listen</h2>
-        </header>
-      )}
-      {data.map((eachData) => {
-        return <Item key={eachData.id} data={eachData} />;
-      })}
-    </>
+    <main className="items">
+      <ul className="list">
+        {data.map((eachData) => {
+          return (
+            <li key={eachData.id}>
+              <Item data={eachData} />
+            </li>
+          );
+        })}
+      </ul>
+    </main>
   );
 }
 
